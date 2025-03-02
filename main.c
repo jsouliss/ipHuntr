@@ -27,7 +27,7 @@ int main() {
     printf("[i] Please enter the first three octets of the IP address (e.g., 192.168.1): ");
     scanf("%15s", ipaddr);
     printf("[+] Beginning scan...\n\n");
-    printf("%s", "Happy Hunting!");
+    printf("%s", "Happy Hunting!\n");
 
     for(int i = 0; i < 256; ++i) {
         // Store full length of IP Address
@@ -36,7 +36,7 @@ int main() {
         pid_t pid = fork();
         if (pid == 0) {
             // This is the child process
-            execl("/sbin/ping", "ping", "-c 1", full_ip, (char*)NULL);
+            execlp("ping", "ping", "-c", "1", full_ip, (char*)NULL);
             _exit(1); // Exit child process if execl fails
         }
         // 0 means we are still in the child process
